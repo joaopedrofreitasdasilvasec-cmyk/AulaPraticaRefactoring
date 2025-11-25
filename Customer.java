@@ -26,7 +26,7 @@ public class Customer {
         Rental each = (Rental) rentals.nextElement();
 
         result += "\t" + each.getMovie().getTitle() + "\t" +
-            String.valueOf(amountFor(each)) + "\n";
+            String.valueOf(each.getMovie().getCharge(each.getDaysRented())) + "\n";
      }
 
      result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
@@ -36,32 +36,7 @@ public class Customer {
      return result;
    }
 
-   private double amountFor(Rental rental) {
-      double thisAmount = 0;
-
-      switch (rental.getMovie().getPriceCode()) {
-
-         case Movie.REGULAR:
-            thisAmount += 2;
-            if (rental.getDaysRented() > 2)
-               thisAmount += (rental.getDaysRented() - 2) * 1.5;
-            break;
-
-         case Movie.NEW_RELEASE:
-            thisAmount += rental.getDaysRented() * 3;
-            break;
-
-         case Movie.CHILDRENS:
-            thisAmount += 1.5;
-            if (rental.getDaysRented() > 3)
-               thisAmount += (rental.getDaysRented() - 3) * 1.5;
-            break;
-      }
-
-      return thisAmount;
-   }
-
-   // removido: frequentRenterPointsFor(rental) — agora está em Rental
+   // ⭐ amountFor foi removido
 
    private double getTotalCharge() {
       double result = 0;
@@ -69,7 +44,7 @@ public class Customer {
 
       while (rentals.hasMoreElements()) {
          Rental each = (Rental) rentals.nextElement();
-         result += amountFor(each);
+         result += each.getMovie().getCharge(each.getDaysRented());
       }
       return result;
    }
@@ -80,7 +55,7 @@ public class Customer {
 
       while (rentals.hasMoreElements()) {
          Rental each = (Rental) rentals.nextElement();
-         result += each.getFrequentRenterPoints(); // usa o método movido para Rental
+         result += each.getFrequentRenterPoints();
       }
       return result;
    }

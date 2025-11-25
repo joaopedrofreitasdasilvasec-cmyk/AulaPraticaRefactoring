@@ -16,7 +16,6 @@ public class Rental {
       return _movie;
    }
 
-   // ⭐ Método adicionado no Commit 6
    public int getFrequentRenterPoints() {
       if (_movie.getPriceCode() == Movie.NEW_RELEASE && _daysRented > 1)
          return 2;
