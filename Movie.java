@@ -35,7 +35,6 @@ public class Movie {
       return _title;
    }
 
-   // Ainda aqui neste commit (será movido no commit 10)
    public double getCharge(int daysRented) {
       return _price.getCharge(daysRented);
    }
