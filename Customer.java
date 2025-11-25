@@ -29,20 +29,14 @@ public class Customer {
 
         double thisAmount = amountFor(each);
 
-        // add frequent renter points
-        frequentRenterPoints++;
-        if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) &&
-            each.getDaysRented() > 1)
-            frequentRenterPoints++;
+        frequentRenterPoints += frequentRenterPointsFor(each);
 
-        // show figures for this rental
         result += "\t" + each.getMovie().getTitle() + "\t" +
             String.valueOf(thisAmount) + "\n";
 
         totalAmount += thisAmount;
      }
 
-     // add footer lines
      result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
      result += "You earned " + String.valueOf(frequentRenterPoints) +
               " frequent renter points";
@@ -50,7 +44,6 @@ public class Customer {
      return result;
    }
 
-   // Método extraído e renomeado (Commits 2 e 3)
    private double amountFor(Rental rental) {
       double thisAmount = 0;
 
@@ -74,5 +67,13 @@ public class Customer {
       }
 
       return thisAmount;
+   }
+
+   private int frequentRenterPointsFor(Rental rental) {
+      if (rental.getMovie().getPriceCode() == Movie.NEW_RELEASE &&
+          rental.getDaysRented() > 1)
+         return 2;
+
+      return 1;
    }
 }
