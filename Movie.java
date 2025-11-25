@@ -11,10 +11,6 @@ public class Movie {
       setPriceCode(priceCode);
    }
 
-   public int getPriceCode() {
-      return _price.getPriceCode();
-   }
-
    public void setPriceCode(int arg) {
       switch (arg) {
          case REGULAR:
@@ -31,7 +27,7 @@ public class Movie {
       }
    }
 
-   public String getTitle () {
+   public String getTitle() {
       return _title;
    }
 

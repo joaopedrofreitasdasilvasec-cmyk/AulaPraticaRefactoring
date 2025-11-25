@@ -16,7 +16,6 @@ public class Rental {
       return _movie;
    }
 
-   // ⭐ Atualizado pelo Commit 8
    public int getFrequentRenterPoints() {
       return _movie.getFrequentRenterPoints(_daysRented);
    }
