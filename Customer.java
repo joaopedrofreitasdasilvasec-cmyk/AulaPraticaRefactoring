@@ -61,15 +61,8 @@ public class Customer {
       return thisAmount;
    }
 
-   private int frequentRenterPointsFor(Rental rental) {
-      if (rental.getMovie().getPriceCode() == Movie.NEW_RELEASE &&
-          rental.getDaysRented() > 1)
-         return 2;
+   // removido: frequentRenterPointsFor(rental) — agora está em Rental
 
-      return 1;
-   }
-
-   // ⭐ Novo método (substitui totalAmount)
    private double getTotalCharge() {
       double result = 0;
       Enumeration rentals = _rentals.elements();
@@ -81,14 +74,13 @@ public class Customer {
       return result;
    }
 
-   // ⭐ Novo método (substitui frequentRenterPoints)
    private int getTotalFrequentRenterPoints() {
       int result = 0;
       Enumeration rentals = _rentals.elements();
 
       while (rentals.hasMoreElements()) {
          Rental each = (Rental) rentals.nextElement();
-         result += frequentRenterPointsFor(each);
+         result += each.getFrequentRenterPoints(); // usa o método movido para Rental
       }
       return result;
    }
