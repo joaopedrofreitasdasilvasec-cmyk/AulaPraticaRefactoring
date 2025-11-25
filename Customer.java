@@ -36,8 +36,6 @@ public class Customer {
      return result;
    }
 
-   // ⭐ amountFor foi removido
-
    private double getTotalCharge() {
       double result = 0;
       Enumeration rentals = _rentals.elements();

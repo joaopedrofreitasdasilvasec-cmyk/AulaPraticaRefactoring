@@ -23,7 +23,6 @@ public class Movie {
       return _title;
    }
 
-   // ⭐ Commit 7 — lógica movida para Movie
    public double getCharge(int daysRented) {
       double result = 0;
 
@@ -46,5 +45,12 @@ public class Movie {
       }
 
       return result;
+   }
+
+   // ⭐ Commit 8 — mover para Movie
+   public int getFrequentRenterPoints(int daysRented) {
+      if (_priceCode == NEW_RELEASE && daysRented > 1)
+         return 2;
+      return 1;
    }
 }
