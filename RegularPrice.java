@@ -1,4 +1,9 @@
-class RegularPrice extends Price {
+public class RegularPrice extends Price {
+    @Override
+    public int getPriceCode() {
+        return Movie.REGULAR;
+    }
+
     @Override
     public double getCharge(int daysRented) {
         double result = 2;

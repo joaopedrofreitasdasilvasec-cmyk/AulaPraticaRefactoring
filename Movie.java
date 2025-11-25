@@ -1,47 +1,39 @@
-class Movie {
+public class Movie {
 
-    public static final int CHILDRENS = 2;
     public static final int REGULAR = 0;
     public static final int NEW_RELEASE = 1;
+    public static final int CHILDRENS = 2;
 
-    private String _title;
-    private Price _price;
+    private String title;
+    private Price price;
 
     public Movie(String title, int priceCode) {
-        _title = title;
+        this.title = title;
         setPriceCode(priceCode);
     }
 
     public int getPriceCode() {
-        return _price.getClass().equals(ChildrensPrice.class) ? CHILDRENS :
-               _price.getClass().equals(NewReleasePrice.class) ? NEW_RELEASE :
-               REGULAR;
+        return price.getPriceCode();
     }
 
     public void setPriceCode(int priceCode) {
         switch (priceCode) {
-            case REGULAR:
-                _price = new RegularPrice();
-                break;
-            case CHILDRENS:
-                _price = new ChildrensPrice();
-                break;
-            case NEW_RELEASE:
-                _price = new NewReleasePrice();
-                break;
+            case REGULAR: price = new RegularPrice(); break;
+            case NEW_RELEASE: price = new NewReleasePrice(); break;
+            case CHILDRENS: price = new ChildrenPrice(); break;
+            default: throw new IllegalArgumentException("Invalid price code");
         }
     }
 
     public String getTitle() {
-        return _title;
+        return title;
     }
 
     public double getCharge(int daysRented) {
-        return _price.getCharge(daysRented);
+        return price.getCharge(daysRented);
     }
 
-    // AGORA SIM: apenas encaminha para Price
     public int getFrequentRenterPoints(int daysRented) {
-        return _price.getFrequentRenterPoints(daysRented);
+        return price.getFrequentRenterPoints(daysRented);
     }
 }
