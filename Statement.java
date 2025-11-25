@@ -1,5 +1,3 @@
-import java.util.Enumeration;
-
 public abstract class Statement {
 
     public String value(Customer customer) {
@@ -7,10 +5,8 @@ public abstract class Statement {
 
         result.append(headerString(customer));
 
-        Enumeration<Rental> rentals = customer.getRentals();
-        while (rentals.hasMoreElements()) {
-            Rental each = rentals.nextElement();
-            result.append(eachRentalString(each));
+        for (Rental rental : customer.getRentalsAsList()) {
+            result.append(eachRentalString(rental));
         }
 
         result.append(footerString(customer));
